@@ -27,6 +27,7 @@ public:
     float get_speed();
     void set_crew(string c);
     string get_crew();
+    void input_info() override;
     void display() override;
     void change_info() override;
     void save(ostream&) override;

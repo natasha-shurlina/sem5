@@ -27,6 +27,7 @@ public:
     float get_speed();
     void set_weapon(string weapon);
     string get_weapon();
+    void input_info() override;
     void display() override;
     void change_info() override;
     void save(ostream&) override;

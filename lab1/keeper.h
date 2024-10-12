@@ -8,14 +8,13 @@
 #include "submarine.h"
 using namespace std;
 
-struct Node {
-    Node* next;
-    Ship* data;
-};
-
 class Keeper    
 {
 private:
+    struct Node {
+    Node* next;
+    Ship* data;
+    };
     Node* head;
     Node* tail;
     int count;
@@ -28,8 +27,8 @@ public:
     void delete_all();
     void print_keeper();
     int get_count();
-    friend Keeper& operator--(Keeper& K);
-    friend Keeper& operator*(Keeper& K);
+    Keeper& operator!();
+    Keeper& operator*();
     void add(Ship* mover);
     Keeper& delete_Node(int n);
     Keeper& edit_Node(int n);
@@ -37,3 +36,4 @@ public:
     void load(const string& filename);
     ~Keeper();
 };
+

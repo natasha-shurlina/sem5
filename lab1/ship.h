@@ -11,6 +11,7 @@ public:
     Ship();
     Ship(const string& n);
     Ship(const Ship& other);
+    virtual void input_info() = 0;
     virtual void display() = 0;
     virtual void change_info() = 0;
     virtual void save(ostream&) = 0;

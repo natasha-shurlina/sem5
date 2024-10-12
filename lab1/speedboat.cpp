@@ -1,16 +1,17 @@
 #include "speedboat.h"
 #include <iostream>
 #include <string>
+#include <limits>
 
 using namespace std;
 
-Speedboat::Speedboat() : purpose(""), material(""), driving_qualities(""), speed(0), people(0) {}
+Speedboat::Speedboat() : purpose(""), material(""), driving_qualities(""), speed(0), people(0) {cout << "Speedboat: Конструктор без параметров\n";}
 
 Speedboat::Speedboat(const string& pur, const string& mat, const string& drq, const float& sp, const int& peop)
-    : purpose(pur), material(mat), driving_qualities(drq), speed(sp), people(peop) {}
+    : purpose(pur), material(mat), driving_qualities(drq), speed(sp), people(peop) {cout << "Speedboat: Конструктор с параметрами\n";}
 
 Speedboat::Speedboat(const Speedboat& other)
-    : purpose(other.purpose), material(other.material), driving_qualities(other.driving_qualities), speed(other.speed), people(other.people) {}
+    : purpose(other.purpose), material(other.material), driving_qualities(other.driving_qualities), speed(other.speed), people(other.people) {cout << "Speedboat: Конструктор копирования\n";}
 
 void Speedboat::set_purpose(string p) {
     purpose = p;
@@ -126,4 +127,43 @@ void Speedboat::load(istream& in) {
     in.ignore();
 }
 
-Speedboat::~Speedboat() {}
+void Speedboat::input_info() {
+    string purpose, material, driving_qualities;
+    float speed;
+    int people;
+
+    cin.ignore();
+    cout << "Введите цель: ";
+    getline(cin, purpose);
+    set_purpose(purpose);
+
+    cout << "Введите материал: ";
+    getline(cin, material);
+    set_material(material);
+
+    cout << "Введите характеристики вождения: ";
+    getline(cin, driving_qualities);
+    set_driving_qualities(driving_qualities);
+
+    cout << "Введите скорость: ";
+    while (!(cin >> speed)) {
+        cout << "Ошибка ввода. Пожалуйста, введите число для скорости: ";
+        cin.clear();
+        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    }
+    set_speed(speed);
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n'); 
+
+    cout << "Введите количество людей: ";
+    while (!(cin >> people)) {
+        cout << "Ошибка ввода. Пожалуйста, введите целое число для количества людей: ";
+        cin.clear();
+        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    }
+    set_people(people);
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n'); 
+}
+
+
+
+Speedboat::~Speedboat() {cout << "Speedboat: Деструктор\n";}

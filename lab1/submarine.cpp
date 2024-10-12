@@ -1,16 +1,17 @@
 #include "submarine.h"
 #include <iostream>
 #include <string>
+#include <limits>
 
 using namespace std;
 
-Submarine::Submarine() : length(0), width(0), crew(""), time(""), speed(0), weapon("") {}
+Submarine::Submarine() : length(0), width(0), crew(""), time(""), speed(0), weapon("") {cout << "Submarine: Конструктор без параметров\n";}
 
 Submarine::Submarine(const float& len, const float& wid, const string& cr, const string& ti, const float& sp, const string& weap)
-    : length(len), width(wid), crew(cr), time(ti), speed(sp), weapon(weap) {}
+    : length(len), width(wid), crew(cr), time(ti), speed(sp), weapon(weap) {cout << "Submarine: Конструктор с параметрами\n";}
 
 Submarine::Submarine(const Submarine& other)
-    : length(other.length), width(other.width), crew(other.crew), time(other.time), speed(other.speed), weapon(other.weapon) {}
+    : length(other.length), width(other.width), crew(other.crew), time(other.time), speed(other.speed), weapon(other.weapon) {cout << "Submarine: Конструктор копирования\n";}
 
 void Submarine::set_length(float len) {
     length = len;
@@ -72,7 +73,6 @@ void Submarine::display() {
 
 void Submarine::change_info() {
     int choice;
-    cout << "Что вы хотите изменить?\n";
     cout << "1. Длина\n2. Ширина\n3. Команда\n4. Время плавания\n5. Скорость\n6. Оружие\n";
     cout << "Введите номер: ";
     cin >> choice;
@@ -81,42 +81,42 @@ void Submarine::change_info() {
     switch (choice) {
         case 1: {
             float newLength;
-            cout << "Введите новую длину: ";
+            cout << "Введите длину: ";
             cin >> newLength;
             set_length(newLength);
             break;
         }
         case 2: {
             float newWidth;
-            cout << "Введите новую ширину: ";
+            cout << "Введите ширину: ";
             cin >> newWidth;
             set_width(newWidth);
             break;
         }
         case 3: {
             string newCrew;
-            cout << "Введите новую команду: ";
+            cout << "Введите команду: ";
             getline(cin, newCrew);
             set_crew(newCrew);
             break;
         }
         case 4: {
             string newTime;
-            cout << "Введите новое время плавания: ";
+            cout << "Введите время плавания: ";
             getline(cin, newTime);
             set_time(newTime);
             break;
         }
         case 5: {
             float newSpeed;
-            cout << "Введите новую скорость: ";
+            cout << "Введите скорость: ";
             cin >> newSpeed;
             set_speed(newSpeed);
             break;
         }
         case 6: {
             string newWeapon;
-            cout << "Введите новое оружие: ";
+            cout << "Введите оружие: ";
             getline(cin, newWeapon);
             set_weapon(newWeapon);
             break;
@@ -144,4 +144,48 @@ void Submarine::load(istream& in) {
     getline(in, weapon);
 }
 
-Submarine::~Submarine() {}
+void Submarine::input_info() {
+    string weapon, time, crew;
+    float length, width, speed;
+
+    cout << "Введите длину: ";
+    while (!(cin >> length)) {
+        cout << "Ошибка ввода. Пожалуйста, введите число для длины: ";
+        cin.clear();
+        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    }
+    set_length(length);
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+
+    cout << "Введите ширину: ";
+    while (!(cin >> width)) {
+        cout << "Ошибка ввода. Пожалуйста, введите число для ширины: ";
+        cin.clear();
+        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    }
+    set_width(width);
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+
+    cout << "Введите экипаж: ";
+    getline(cin, crew);
+    set_crew(crew);
+
+    cout << "Введите время: ";
+    getline(cin, time);
+    set_time(time);
+
+    cout << "Введите скорость: ";
+    while (!(cin >> speed)) {
+        cout << "Ошибка ввода. Пожалуйста, введите число для скорости: ";
+        cin.clear();
+        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    }
+    set_speed(speed);
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+
+    cout << "Введите оружие: ";
+    getline(cin, weapon);
+    set_weapon(weapon);
+}
+
+Submarine::~Submarine() {cout << "Submarine: Деструктор\n";}

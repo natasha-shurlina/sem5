@@ -24,6 +24,7 @@ public:
     float get_speed();
     void set_people(int p);
     int get_people();
+    void input_info() override;
     void display() override;
     void change_info() override;
     void save(ostream&) override;

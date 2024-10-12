@@ -1,16 +1,17 @@
 #include "sailboat.h"
 #include <iostream>
 #include <string>
+#include <limits>   
 
 using namespace std;
 
-Sailboat::Sailboat() : type(""), name(""), purpose(""), length(0), speed(0), crew("") {}
+Sailboat::Sailboat() : type(""), name(""), purpose(""), length(0), speed(0), crew("") {cout << "Sailboat: Конструктор без параметров\n";}
 
 Sailboat::Sailboat(const string& t, const string& n, const string& pur, const float& len, const float& sp, const string& cr)
-    : type(t), name(n), purpose(pur), length(len), speed(sp), crew(cr) {}
+    : type(t), name(n), purpose(pur), length(len), speed(sp), crew(cr) {cout << "Sailboat: Конструктор с параметрами\n";}
 
 Sailboat::Sailboat(const Sailboat& other)
-    : type(other.type), name(other.name), purpose(other.purpose), length(other.length), speed(other.speed), crew(other.crew) {}
+    : type(other.type), name(other.name), purpose(other.purpose), length(other.length), speed(other.speed), crew(other.crew) {cout << "Sailboat: Конструктор копирования\n";}
 
 void Sailboat::set_type(string t) {
     type = t;
@@ -72,7 +73,6 @@ void Sailboat::display() {
 
 void Sailboat::change_info() {
     int choice;
-    cout << "Что вы хотите изменить?\n";
     cout << "1. Тип\n2. Имя\n3. Цель\n4. Длина\n5. Скорость\n6. Команда\n";
     cout << "Введите номер: ";
     cin >> choice;
@@ -81,42 +81,42 @@ void Sailboat::change_info() {
     switch (choice) {
         case 1: {
             string newType;
-            cout << "Введите новый тип: ";
+            cout << "Введите тип: ";
             getline(cin, newType);
             set_type(newType);
             break;
         }
         case 2: {
             string newName;
-            cout << "Введите новое имя: ";
+            cout << "Введите имя: ";
             getline(cin, newName);
             set_name(newName);
             break;
         }
         case 3: {
             string newPurpose;
-            cout << "Введите новую цель: ";
+            cout << "Введите цель: ";
             getline(cin, newPurpose);
             set_purpose(newPurpose);
             break;
         }
         case 4: {
             float newLength;
-            cout << "Введите новую длину: ";
+            cout << "Введите длину: ";
             cin >> newLength;
             set_length(newLength);
             break;
         }
         case 5: {
             float newSpeed;
-            cout << "Введите новую скорость: ";
+            cout << "Введите скорость: ";
             cin >> newSpeed;
             set_speed(newSpeed);
             break;
         }
         case 6: {
             string newCrew;
-            cout << "Введите новую команду: ";
+            cout << "Введите команду: ";
             getline(cin, newCrew);
             set_crew(newCrew);
             break;
@@ -143,4 +143,46 @@ void Sailboat::load(istream& in) {
     getline(in, crew);
 }
 
-Sailboat::~Sailboat() {}
+void Sailboat::input_info() {
+    string type, name, purpose, crew;
+    float length, speed;
+
+    cin.ignore();
+    cout << "Введите тип: ";
+    getline(cin, type);
+    set_type(type);
+
+    cout << "Введите название: ";
+    getline(cin, name);
+    set_name(name);
+
+    cout << "Введите назначение: ";
+    getline(cin, purpose);
+    set_purpose(purpose);
+
+    cout << "Введите экипаж: ";
+    getline(cin, crew);
+    set_crew(crew);
+
+    cout << "Введите длину: ";
+    while (!(cin >> length)) {
+        cout << "Ошибка ввода. Пожалуйста, введите число для длины: ";
+        cin.clear();
+        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    }
+    set_length(length);
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+
+    cout << "Введите скорость: ";
+    while (!(cin >> speed)) {
+        cout << "Ошибка ввода. Пожалуйста, введите число для скорости: ";
+        cin.clear();
+        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    }
+    set_speed(speed);
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+}
+
+
+
+Sailboat::~Sailboat() {cout << "Sailboat: Деструктор\n";}
