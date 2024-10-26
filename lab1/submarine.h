@@ -5,12 +5,12 @@
 class Submarine: public Ship
 {
 private:
-    float length;
-    float width;
-    string crew;
-    string time;
-    float speed;
-    string weapon;
+    float length; // Длина
+    float width; // Ширина
+    string crew; //Экипаж
+    string time; //Время неприрывного пребывания под водой
+    float speed; // Максимальная скорость под водой
+    string weapon; //Вооружение
 public:
     Submarine();
     Submarine(const float& len, const float& wid, const string& cr, const string& ti, const float& sp, const string& weap);

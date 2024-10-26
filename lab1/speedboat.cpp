@@ -1,4 +1,4 @@
-#include "speedboat.h"
+#include "speedboat.h"//катер
 #include <iostream>
 #include <string>
 #include <limits>
@@ -15,7 +15,7 @@ Speedboat::Speedboat(const Speedboat& other)
 
 void Speedboat::set_purpose(string p) {
     purpose = p;
-}
+}//назначение
 
 string Speedboat::get_purpose() {
     return purpose;
@@ -23,7 +23,7 @@ string Speedboat::get_purpose() {
 
 void Speedboat::set_material(string m) {
     material = m;
-}
+}//материал корпуса
 
 string Speedboat::get_material() {
     return material;
@@ -31,7 +31,7 @@ string Speedboat::get_material() {
 
 void Speedboat::set_driving_qualities(string d) {
     driving_qualities = d;
-}
+}//ходовые каечтва
 
 string Speedboat::get_driving_qualities() {
     return driving_qualities;
@@ -39,7 +39,7 @@ string Speedboat::get_driving_qualities() {
 
 void Speedboat::set_speed(float s) {
     speed = s;
-}
+}//скорость
 
 float Speedboat::get_speed() {
     return speed;
@@ -47,7 +47,7 @@ float Speedboat::get_speed() {
 
 void Speedboat::set_people(int p) {
     people = p;
-}
+}//количество людей
 
 int Speedboat::get_people() {
     return people;
@@ -57,7 +57,7 @@ void Speedboat::display() {
     cout << "Информация о катере:\n";
     cout << "Цель: " << purpose << "\n";
     cout << "Материал: " << material << "\n";
-    cout << "Характеристики вождения: " << driving_qualities << "\n";
+    cout << "Ходовые качества: " << driving_qualities << "\n";
     cout << "Скорость: " << speed << " узлов\n";
     cout << "Количество людей: " << people << "\n";
 }
@@ -65,7 +65,7 @@ void Speedboat::display() {
 void Speedboat::change_info() {
     int choice;
     cout << "Что вы хотите изменить?\n";
-    cout << "1. Цель\n2. Материал\n3. Характеристики вождения\n4. Скорость\n5. Количество людей\n";
+    cout << "1. Цель\n2. Материал\n3. Ходовые качества\n4. Скорость\n5. Количество людей\n";
     cout << "Введите номер: ";
     cin >> choice;
     cin.ignore();
@@ -87,7 +87,7 @@ void Speedboat::change_info() {
         }
         case 3: {
             string newDrivingQualities;
-            cout << "Введите новые характеристики вождения: ";
+            cout << "Введите новые ходовые качества: ";
             getline(cin, newDrivingQualities);
             set_driving_qualities(newDrivingQualities);
             break;
@@ -141,7 +141,7 @@ void Speedboat::input_info() {
     getline(cin, material);
     set_material(material);
 
-    cout << "Введите характеристики вождения: ";
+    cout << "Введите ходовые качества: ";
     getline(cin, driving_qualities);
     set_driving_qualities(driving_qualities);
 

@@ -5,12 +5,12 @@
 class Sailboat: public Ship
 {
 private:
-    string type;
-    string name;
-    string purpose;
-    float length;
-    float speed;
-    string crew;
+    string type;  // Тип парусника
+    string name; // Название
+    string purpose; //мирный или военный
+    float length; // Длина корпуса
+    float speed; //Скорость перемещение
+    string crew; //Экипаж
 public:
     Sailboat();
     Sailboat(const string& type, const string& name, const string& pur, const float& len, const float& sp, const string& crew);

@@ -1,4 +1,4 @@
-#include "submarine.h"
+#include "submarine.h"//подводная лодка
 #include <iostream>
 #include <string>
 #include <limits>
@@ -15,7 +15,7 @@ Submarine::Submarine(const Submarine& other)
 
 void Submarine::set_length(float len) {
     length = len;
-}
+}//длина
 
 float Submarine::get_length() {
     return length;
@@ -23,7 +23,7 @@ float Submarine::get_length() {
 
 void Submarine::set_width(float wid) {
     width = wid;
-}
+}//ширина
 
 float Submarine::get_width() {
     return width;
@@ -31,7 +31,7 @@ float Submarine::get_width() {
 
 void Submarine::set_crew(string cr) {
     crew = cr;
-}
+}//экмипаж
 
 string Submarine::get_crew() {
     return crew;
@@ -39,7 +39,7 @@ string Submarine::get_crew() {
 
 void Submarine::set_time(string ti) {
     time = ti;
-}
+}//время неприрывного пребывания под водой
 
 string Submarine::get_time() {
     return time;
@@ -47,7 +47,7 @@ string Submarine::get_time() {
 
 void Submarine::set_speed(float sp) {
     speed = sp;
-}
+}//максимальная подводная скорость
 
 float Submarine::get_speed() {
     return speed;
@@ -55,7 +55,7 @@ float Submarine::get_speed() {
 
 void Submarine::set_weapon(string weap) {
     weapon = weap;
-}
+}//вооружение
 
 string Submarine::get_weapon() {
     return weapon;

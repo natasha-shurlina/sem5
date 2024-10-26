@@ -1,15 +1,15 @@
 #pragma once
 #include "ship.h"
 #include <cstdlib>
-
+// Катер
 class Speedboat: public Ship
 {
 private:
-    string purpose;
-    string material;
-    string driving_qualities;
-    float speed;
-    int people;
+    string purpose; // Назначение
+    string material; // Материал корпуса
+    string driving_qualities; // Ходовые качества
+    float speed; // Скорость
+    int people; // Количество людей, которые могу находится на борты
 public:
     Speedboat();
     Speedboat(const string& purpose, const string& material, const string& driving_qualities, const float& speed, const int& people);

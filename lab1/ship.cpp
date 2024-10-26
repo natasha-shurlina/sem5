@@ -1,4 +1,4 @@
-#include "ship.h"
+#include "ship.h"//корабль
 
 Ship::Ship() {cout << "Ship: Конструктор без параметров\n";}
 

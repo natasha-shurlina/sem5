@@ -97,3 +97,4 @@ int main() {
 
     return 0;
 }
+//g++ -std=c++11 main.cpp keeper.cpp sailboat.cpp ship.cpp speedboat.cpp submarine.cpp -o result -Wall

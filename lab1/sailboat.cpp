@@ -1,21 +1,21 @@
-#include "sailboat.h"
+#include "sailboat.h" //парусник
 #include <iostream>
 #include <string>
 #include <limits>   
 
 using namespace std;
-
+// Конструктор без параметров
 Sailboat::Sailboat() : type(""), name(""), purpose(""), length(0), speed(0), crew("") {cout << "Sailboat: Конструктор без параметров\n";}
-
+// Конструктор с параметрами
 Sailboat::Sailboat(const string& t, const string& n, const string& pur, const float& len, const float& sp, const string& cr)
     : type(t), name(n), purpose(pur), length(len), speed(sp), crew(cr) {cout << "Sailboat: Конструктор с параметрами\n";}
-
+// Конструктор копирования
 Sailboat::Sailboat(const Sailboat& other)
     : type(other.type), name(other.name), purpose(other.purpose), length(other.length), speed(other.speed), crew(other.crew) {cout << "Sailboat: Конструктор копирования\n";}
 
 void Sailboat::set_type(string t) {
     type = t;
-}
+}//тип парусника
 
 string Sailboat::get_type() {
     return type;
@@ -23,7 +23,7 @@ string Sailboat::get_type() {
 
 void Sailboat::set_name(string n) {
     name = n;
-}
+}//название парусника
 
 string Sailboat::get_name() {
     return name;
@@ -31,7 +31,7 @@ string Sailboat::get_name() {
 
 void Sailboat::set_purpose(string p) {
     purpose = p;
-}
+}//мирный или военный
 
 string Sailboat::get_purpose() {
     return purpose;
@@ -39,7 +39,7 @@ string Sailboat::get_purpose() {
 
 void Sailboat::set_length(float l) {
     length = l;
-}
+}//длина корпуса
 
 float Sailboat::get_length() {
     return length;
@@ -47,7 +47,7 @@ float Sailboat::get_length() {
 
 void Sailboat::set_speed(float s) {
     speed = s;
-}
+}//скорость перемещенияч
 
 float Sailboat::get_speed() {
     return speed;
@@ -55,7 +55,7 @@ float Sailboat::get_speed() {
 
 void Sailboat::set_crew(string c) {
     crew = c;
-}
+}//экипаж
 
 string Sailboat::get_crew() {
     return crew;
@@ -68,7 +68,7 @@ void Sailboat::display() {
     cout << "Цель: " << purpose << "\n";
     cout << "Длина: " << length << " м\n";
     cout << "Скорость: " << speed << " узлов\n";
-    cout << "Команда: " << crew << "\n";
+    cout << "Экипаж: " << crew << "\n";
 }
 
 void Sailboat::change_info() {
@@ -95,7 +95,7 @@ void Sailboat::change_info() {
         }
         case 3: {
             string newPurpose;
-            cout << "Введите цель: ";
+            cout << "Введите цель (мирный/военный): ";
             getline(cin, newPurpose);
             set_purpose(newPurpose);
             break;
@@ -116,7 +116,7 @@ void Sailboat::change_info() {
         }
         case 6: {
             string newCrew;
-            cout << "Введите команду: ";
+            cout << "Введите экипаж: ";
             getline(cin, newCrew);
             set_crew(newCrew);
             break;
@@ -156,7 +156,7 @@ void Sailboat::input_info() {
     getline(cin, name);
     set_name(name);
 
-    cout << "Введите назначение: ";
+    cout << "Введите назначение (мирный/военный): ";
     getline(cin, purpose);
     set_purpose(purpose);
 
