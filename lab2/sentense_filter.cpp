@@ -1,26 +1,26 @@
 #include "sentense_filter.h"
 
 SentenceFilter::SentenceFilter() : source(""), isTextSource(false) {
-    cout << "Default constructor called for class SentenceFilter\n";
+    cout << "Конструктор по умолчанию для класса SentenceFilter вызван\n";
 }
 
 SentenceFilter::SentenceFilter(const string& filename)
     : source(filename), isTextSource(false) {
-    cout << "Constructor with parameters called for class SentenceFilter\n";
+    cout << "Конструктор без параметров для класса SentenceFilter вызван\n";
 }
 
 SentenceFilter::SentenceFilter(const string& text, bool isText)
     : source(text), isTextSource(isText) {
-    cout << "Constructor with parameters called for class SentenceFilter\n";
+    cout << "Конструктор с параметрами для класса SentenceFilter вызван\n";
 }
 
 SentenceFilter::SentenceFilter(const SentenceFilter& other)
     : source(other.source), isTextSource(other.isTextSource) {
-    cout << "Copy constructor called for class SentenceFilter\n";
+    cout << "Конструктор копирования для класса SentenceFilter вызван\n";
 }
 
 SentenceFilter::~SentenceFilter() {
-    cout << "Destructor called for class SentenceFilter\n";
+    cout << "Деструктор для класса SentenceFilter вызван\n";
 }
 
 
@@ -32,7 +32,7 @@ void SentenceFilter::result() const {
     } else {
         ifstream file(source);
         if (!file.is_open()) {
-            cerr << "Failed to open file: " << source << endl;
+            cerr << "Не удалось открыть файл: " << source << endl;
             return;
         }
         ostringstream buffer;
@@ -47,7 +47,7 @@ void SentenceFilter::result() const {
     int lineCount = 0;
     split_into_lines(text, lines, lineCount);
 
-    cout << "Text with swapped words:\n";
+    cout << "Текст с замененными словами:\n";
     for (int i = 0; i < lineCount; ++i) {
         cout << swap_adjacent_words(lines[i]) << endl;
     }

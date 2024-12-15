@@ -4,13 +4,13 @@
 #include "sentense_filter.h"
 
 void display_menu() {
-    cout << "\n===== Group Management Menu =====" << endl;
-    cout << "1. Add a group" << endl;
-    cout << "2. Remove a group" << endl;
-    cout << "3. Edit group data" << endl;
-    cout << "4. Display all groups" << endl;
-    cout << "0. Exit" << endl;
-    cout << "Enter your choice: ";
+    cout << "\n===== Меню управления группами =====" << endl;
+    cout << "1. Добавить группу" << endl;
+    cout << "2. Удалить группу" << endl;
+    cout << "3. Редактировать данные группы" << endl;
+    cout << "4. Вывести все группы" << endl;
+    cout << "0. Выход" << endl;
+    cout << "Введите Ваш выбор: ";
 }
 
 int students_program() {
@@ -24,38 +24,38 @@ int students_program() {
         switch (choice) {
             case 1: {
                 int group_number, subject_count;
-                cout << "Enter group number: ";
+                cout << "Введите номер группы: ";
                 group_number = check_input();
-                cout << "Enter the number of subjects: ";
+                cout << "Введите номер предмета: ";
                 subject_count = check_input();
 
                 string* subjects = new string[subject_count];
-                cout << "Enter subject names:" << endl;
+                cout << "Введите назввание предмета:" << endl;
                 for (int i = 0; i < subject_count; ++i) {
                     cin >> subjects[i];
                 }
-                cout << "Enter the index to add:\n";
+                cout << "Введите индекс для добавления:\n";
                 int index = check_input();
 
                 Group* new_group = new Group(0.0, subjects, group_number, subject_count, 0);
                 container.add_group(new_group, index - 1);
-                cout << "Group added successfully." << endl;
+                cout << "Группа успешно добавлена." << endl;
 
                 break;
             }
             case 2: {
-                cout << "Enter the index of the group to remove: ";
+                cout << "Введите индекс группы для удаления: ";
                 int index = check_input();
                 try {
                     container.delete_group(index - 1);
-                    cout << "Group removed successfully." << endl;
+                    cout << "Группа успешно удалена." << endl;
                 } catch (const out_of_range& e) {
                     cerr << e.what() << endl;
                 }
                 break;
             }
             case 3: {
-                cout << "Enter the index of the group to edit: ";
+                cout << "Введите индекс группы для редактирования: ";
                 int index = check_input();
                 try {
                     container.edit_group(index - 1);
@@ -69,11 +69,11 @@ int students_program() {
                 break;
             }
             case 0: {
-                cout << "Exiting the program." << endl;
+                cout << "Выход из программы." << endl;
                 return 0;
             }
             default:
-                cout << "Invalid choice! Try again." << endl;
+                cout << "Неверный выбор! Попробуйте снова." << endl;
                 break;
         }
     }
@@ -81,36 +81,36 @@ int students_program() {
 int words_program() {
     try {
         int choice;
-        cout << "Select a source (1 - text string, 2 - file): ";
+        cout << "Выберите источник (1 - текстовая строка, 2 - файл): ";
         if (!(cin >> choice)) {
-            throw invalid_argument("Error: Invalid input for source selection.");
+            throw invalid_argument("Ошибка: Неверный источник.");
         }
 
         if (choice == 1) {
             cin.ignore();
             char text[8192];
-            cout << "Enter the text: ";
+            cout << "Введите текст: ";
             cin.getline(text, sizeof(text));
 
             if (cin.fail()) {
-                throw overflow_error("Error: Exceeded maximum text length.");
+                throw overflow_error("Ошибка: Превышена максимальная длина текста.");
             }
 
             SentenceFilter filter(text, true);
             filter.result();
         } else if (choice == 2) {
             char filename[256];
-            cout << "Enter the file name: ";
+            cout << "Введите имя файла: ";
             cin >> filename;
             ifstream file(filename);
             if (!file) {
-                throw runtime_error("Error: File not found or cannot be opened.");
+                throw runtime_error("Ошибка: Файл не найден или не может быть открыт.");
             }
             file.close();
             SentenceFilter filter(filename);
             filter.result();
         } else {
-            throw out_of_range("Error: Selected source does not exist.");
+            throw out_of_range("Оибка: Выбранный источник не соответствует.");
         }
     }
     catch (const invalid_argument& e) {
@@ -130,7 +130,7 @@ int words_program() {
         return 4;
     }
     catch (...) {
-        cerr << "An unknown error occurred." << endl;
+        cerr << "Произошла неизвестная ошибка." << endl;
         return -1;
     }
     return 0;

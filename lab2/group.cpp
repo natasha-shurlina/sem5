@@ -1,7 +1,7 @@
 #include "group.h"
 
 Group::Group() : aver_mark(0.0), subjects(nullptr), number(0), count(0), students(nullptr), stud(0) {
-    cout << "The constructor without parameters for the Group class is called\n";
+    cout << "Конструктор без параметров для класса Group вызван\n";
 }
 
 Group::Group(const float am, const string* s, const int n, const int c, const int st)
@@ -11,7 +11,7 @@ Group::Group(const float am, const string* s, const int n, const int c, const in
         this->subjects[i] = s[i];
     }
     students = new Student*[st]; 
-    cout << "The constructor with parameters for the Group class is called\n";
+    cout << "Конструктор с параметрами для класса Group вызван\n";
 }
 
 Group::Group(const Group& other) : aver_mark(other.aver_mark), number(other.number), count(other.count) {
@@ -25,7 +25,7 @@ Group::Group(const Group& other) : aver_mark(other.aver_mark), number(other.numb
         students[i] = new Student(*other.students[i]);
     }
 
-    cout << "The copy constructor for the Group class is called\n";
+    cout << "Конструктор копирования для класса Group вызван\n";
 }
 
 
@@ -35,7 +35,7 @@ Group::~Group() {
         delete students[i];
     }
     delete[] students;
-    cout << "The destructor for the Group class is called\n";
+    cout << "Деструктор для класса Group вызван\n";
 }
 
 float Group::get_aver_mark() const {
@@ -70,7 +70,7 @@ void Group::set_number(int n) {
 
 void Group::add_student(Student* St, int index) {
     if (index < 0 || index > stud) {
-        cout << "Invalid index!\n";
+        cout << "Неверный индекс!\n";
         return;
     }
     Student** new_students = new Student*[stud + 1];
@@ -98,7 +98,7 @@ Group& Group::delete_student(int index) {
         students[stud - 1] = nullptr;
         --stud;
     } else {
-        cout << "Invalid index!\n";
+        cout << "Неверный индекс!\n";
     }
     this->count_aver_mark();
     return *this;
@@ -108,7 +108,7 @@ Group& Group::edit_student(int index) {
     if (index >= 0 && index < stud) {
         students[index]->edit_student();
     } else {
-        cout << "Invalid index!\n";
+        cout << "Неверный индекс!\n";
     }
     this->count_aver_mark();
     return *this;
@@ -118,8 +118,8 @@ Student& Group::operator[](int index) {
     if (index >= 0 && index < stud) {
         return *students[index];
     } else {
-        cout << "Invalid index!\n";
-        throw out_of_range("Index out of range");
+        cout << "Неверный индекс!\n";
+        throw out_of_range("Индекс вне диапазона");
     }
 }
 
@@ -156,16 +156,16 @@ int Group::get_count() const {
 }
 
 void Group::display_group() const {
-    cout << "Group Number: " << number << endl;
-    cout << "Average Mark: " << aver_mark << endl;
-    cout << "Subjects: ";
+    cout << "Номер группы: " << number << endl;
+    cout << "Средняя оценка: " << aver_mark << endl;
+    cout << "Предмет: ";
     for (int i = 0; i < count; ++i) {
         cout << subjects[i] << " ";
     }
     cout << endl;
-    cout << "Students (" << stud << "):" << endl;
+    cout << "Студенты (" << stud << "):" << endl;
     for (int i = 0; i < stud; ++i) {
-        cout << "Student " << i + 1 << ":" << endl;
+        cout << "Студент " << i + 1 << ":" << endl;
         students[i]->display_student();
     }
 }

@@ -1,13 +1,14 @@
 #include "container.h"
 
-Container::Container() : head(nullptr), tail(nullptr), count(0) {cout << "The constructor without parameters for the Container class is called\n";}
+Container::Container() : head(nullptr), tail(nullptr), count(0) {
+    cout << "Конструктор без параметров для класса Container вызван\n";}
 
 Container::Container(Node* h, Node* t, const int c) : head(h), tail(t), count(c) {
-    cout << "The constructor with parameters for the Container class is called\n";
+    cout << "Конструктор с параметрами для класса Container вызван\n";
 }
 
 Container::Container(const Container& other) : head(other.head), tail(other.tail), count(other.count) {
-    cout << "The copy constructor for the Container class is called\n";
+    cout << "Конструктор копирования для класса Container вызван\n";
 }
 
 Container::~Container() {
@@ -19,9 +20,8 @@ Container::~Container() {
     }
     tail = nullptr;
     count = 0;
-    cout << "The destructor for the Container class is called" << endl;
+    cout << "Деструктор для класса Container вызван" << endl;
 }
-
 
 Node* Container::get_head() {
     return this->head;
@@ -33,7 +33,7 @@ Node* Container::get_tail() {
 
 void Container::add_group(Group* St, int index) {
     if (index < 0 || index > count) {
-        throw out_of_range("Index out of range");
+        throw out_of_range("Индекс все диапазона");
     }
     
     Node* node_to_add = new Node;
@@ -64,7 +64,7 @@ void Container::add_group(Group* St, int index) {
 
 Container& Container::delete_group(int index) {
     if (index < 0 || index >= count) {
-        throw out_of_range("Index out of range");
+        throw out_of_range("Индекс все диапазона");
     }
 
     Node* temp = head;
@@ -97,19 +97,18 @@ Container& Container::delete_group(int index) {
 void Container::display_groups() {
     Node* temp = head;
     if (count == 0) {
-        cout << "No data" << endl;
+        cout << "Нет данных" << endl;
         return;
     }
 
     int index = 1;
     while (temp != nullptr) {
-        cout << index << " - group:\n";
+        cout << index << " - группа:\n";
         temp->data->display_group();
         temp = temp->next;
         index++;
     }
 }
-
 
 void Container::sort_groups_by_number() {
     if (count < 2) return;
@@ -131,8 +130,8 @@ void Container::search_groups_with_average_marks_more_than_4() {
 
     while (temp != nullptr) {
         if (temp->data->get_aver_mark() > 4.0) {
-            cout << "Group with group number " << temp->data->get_number() 
-                 << " has an average mark more than 4: " 
+            cout << "Группа с номером " << temp->data->get_number() 
+                 << " имеет среднюю оценку больше чем 4: " 
                  << temp->data->get_aver_mark() << endl;
             found = true;
         }
@@ -140,63 +139,62 @@ void Container::search_groups_with_average_marks_more_than_4() {
     }
 
     if (!found) {
-        cout << "No groups with average marks more than 4 were found." << endl;
+        cout << "Групп со средней оценкой больше 4 не было найдено." << endl;
     }
 }
 
-
 Container& Container::edit_group(int index) {
     if (index < 0 || index >= count) {
-        throw out_of_range("Index out of range");
+        throw out_of_range("Индекс все диапазона");
     }
     Node* temp = head;
     for (int i = 0; i < index; ++i) {
         temp = temp->next;
     }
     while (true) {
-        cout << "\n===== Student Management Menu =====" << endl;
-        cout << "1. Add a student" << endl;
-        cout << "2. Remove a student" << endl;
-        cout << "3. Edit student data" << endl;
-        cout << "4. Display data group" << endl;
-        cout << "5. Edit subjects" << endl;
-        cout << "6. Edit number" << endl;
-        cout << "0. Exit" << endl;
-        cout << "Enter your choice: ";
+        cout << "\n===== Меню управления студентами =====" << endl;
+        cout << "1. Добавить студента" << endl;
+        cout << "2. Удалить студента" << endl;
+        cout << "3. Редактирование данных ученика" << endl;
+        cout << "4. Вывести данные о группе" << endl;
+        cout << "5. Редактирование предмета" << endl;
+        cout << "6. Редактирования номера" << endl;
+        cout << "0. Выход" << endl;
+        cout << "Введите Ваш выбор: ";
         int choice = check_input();
 
         switch (choice) {
             case 1: {
                 string name;
-                int number, size;
-                cout << "Enter student's name: ";
+                int size;
+                cout << "Введите имя студента: ";
                 cin.ignore();
                 getline(cin, name);
-                cout << "Enter the number of marks: ";
+                cout << "Введите количество оценок: ";
                 size = check_input();
 
                 float* marks = new float[size];
 
-                cout << "Enter marks: ";
+                cout << "Введите оценку: ";
                 for (int i = 0; i < size; i++) {
                     cin >> marks[i];
                 }
 
-                cout << "Enter the student's index to add: ";
+                cout << "Введите индекс студента для добавления: ";
                 int student_index = check_input();
 
                 Student* new_student = new Student(name, marks, size);
                 temp->data->add_student(new_student, student_index - 1);
-                cout << "Student added." << endl;
+                cout << "Студент добавлен." << endl;
                 break;
             }
             case 2: {
                 int student_index;
-                cout << "Enter the index of the student to remove: ";
+                cout << "Введите индекс студента для удаления: ";
                 student_index = check_input();
                 try {
                     temp->data->delete_student(student_index - 1);
-                    cout << "Student removed." << endl;
+                    cout << "Студент удален." << endl;
                 } catch (const out_of_range& e) {
                     cout << e.what() << endl;
                 }
@@ -204,11 +202,11 @@ Container& Container::edit_group(int index) {
             }
             case 3: {
                 int student_index;
-                cout << "Enter the index of the student to edit: ";
+                cout << "Введите индекс студента для редактирования: ";
                 student_index = check_input();
                 try {
                     temp->data->edit_student(student_index - 1);
-                    cout << "Student data updated." << endl;
+                    cout << "Данные о студенте обновлены." << endl;
                 } catch (const out_of_range& e) {
                     cout << e.what() << endl;
                 }
@@ -219,11 +217,11 @@ Container& Container::edit_group(int index) {
                 break;
             }
             case 5: {
-                cout << "Enter the number of subjects: ";
+                cout << "Введите количество предметов: ";
                 int subject_count = check_input();
 
                 string* subjects = new string[subject_count];
-                cout << "Enter subject names:" << endl;
+                cout << "Введите название предмета:" << endl;
                 for (int i = 0; i < subject_count; ++i) {
                     cin >> subjects[i];
                 }
@@ -231,17 +229,17 @@ Container& Container::edit_group(int index) {
                 break;
             }
             case 6: {
-                cout << "Enter the new number of the group: ";
+                cout << "Введите новый номер: ";
                 int num = check_input();
                 temp->data->set_number(num);
                 break;
             }
             case 0: {
-                cout << "Exiting the menu." << endl;
+                cout << "Выход из меню." << endl;
                 return *this;
             }
             default: {
-                cout << "Invalid choice! Try again." << endl;
+                cout << "Ошибка! Попробуйте еще раз." << endl;
                 break;
             }
         }
@@ -251,7 +249,7 @@ Container& Container::edit_group(int index) {
 
 Group& Container::operator[](int index) {
     if (index < 0 || index >= count) {
-        throw out_of_range("Index out of range");
+        throw out_of_range("Индекс все диапазона");
     }
 
     Node* temp = head;
