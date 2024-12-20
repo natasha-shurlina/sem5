@@ -35,9 +35,9 @@ void SentenceFilter::result() const {
             cerr << "Не удалось открыть файл: " << source << endl;
             return;
         }
-        ostringstream buffer;
-        buffer << file.rdbuf();
-        text = buffer.str();
+        ostringstream buffer; //создаем поток для считывания содержимого файла в строку
+        buffer << file.rdbuf(); //считываем содержимого потока в строку
+        text = buffer.str(); //преобразуем содержимое потока в строку
         file.close();
     }
 
